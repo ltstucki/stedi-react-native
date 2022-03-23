@@ -1,6 +1,6 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, TextInput } from 'react-native';
-import { Button } from 'react-native-elements/dist/buttons/Button';
+import { SafeAreaView, StyleSheet, TextInput, Button } from 'react-native';
+//import { Button } from 'react-native-elements/dist/buttons/Button';
   const Login = (props) => {
     const [phonenumber, onChangeNumber] = React.useState(null);
     const [otp, onChangeOtp] = React.useState(null);
@@ -9,8 +9,15 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
         <TextInput
           style={styles.input}
           onChangeNumber={onChangeNumber}
+          keyboardType='numeric'
           value={phonenumber}
         />
+
+        <Button
+          title = 'Send Code'
+          onPress={()=> send_code(phonenumber)}
+          />
+
         <TextInput
           style={styles.input}
           onChangeNumber={onChangeOtp}
@@ -18,10 +25,14 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
           placeholder='one-time password'
           keyboardType='numeric'
         />
+      
+
+
         <Button
             title = 'Login'
             onPress={()=>props.setuserLoggedIn(true)}>
             </Button>
+
       </SafeAreaView>
     );
   };
@@ -36,12 +47,12 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
 
   export default Login;
 
-  /*
-  fetch('https://dev.stedi.me/twofactorlogin/'+phonenumber, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/text'
-    },
-    });
-    */
+  const send_code = (onChangeNumber) => {
+    fetch('https://dev.stedi.me/twofactorlogin/'+phonenumber, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/text'
+      },
+      });
+    }
