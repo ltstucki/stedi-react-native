@@ -11,6 +11,7 @@ import { SafeAreaView, StyleSheet, TextInput, Button } from 'react-native';
           onChangeNumber={onChangeNumber}
           keyboardType='numeric'
           value={phonenumber}
+          placeholder="Phone Number"
         />
 
         <Button
@@ -47,7 +48,7 @@ import { SafeAreaView, StyleSheet, TextInput, Button } from 'react-native';
 
   export default Login;
 
-  const send_code = (onChangeNumber) => {
+  const send_code = (onChangeNumber) =>{
     fetch('https://dev.stedi.me/twofactorlogin/'+phonenumber, {
       method: 'POST',
       headers: {
